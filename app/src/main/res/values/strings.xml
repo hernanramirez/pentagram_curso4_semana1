@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Mascotas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plikes">0</string>
+
+    <string name="action_contacto">Contacto</string>
+    <string name="action_acerca">Acerca de</string>
+    <string name="action_configurar_cuenta">Configurar cuenta</string>
+
+    <string name="contacto_nombre">Nombre</string>
+    <string name="contacto_correo">Corroe</string>
+    <string name="contacto_enviar">enviar</string>
+    <string name="contacto_comentario">Comentario</string>
+    <string name="contacto_nota">Nota</string>
+
+    <string name="dialogo_text01">Mascotas App</string>
+    <string name="dialogo_text02">Realizada por Hernan Ramirez</string>
+    <string name="dialogo_text03">Actividad Semana 1, curso 4</string>
+
+</resources>
