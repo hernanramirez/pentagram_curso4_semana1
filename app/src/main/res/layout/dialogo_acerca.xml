@@ -5,6 +5,16 @@
     android:orientation="vertical"
     android:padding="20dip">
 
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgPerfil"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/about_app"
+        app:civ_border_color="#8BC34A"
+        app:civ_border_width="2dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

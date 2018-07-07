@@ -7,6 +7,7 @@
     <dimen name="corner_radius_cardview">4dp</dimen>
     <dimen name="altura_tarjeta1">230dp</dimen>
     <dimen name="nombre_cardview">20sp</dimen>
+    <dimen name="user_cardview">8sp</dimen>
     <dimen name="top">20dp</dimen>
     <dimen name="left">10dp</dimen>
 </resources>

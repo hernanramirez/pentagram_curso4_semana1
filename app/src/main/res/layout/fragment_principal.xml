@@ -19,34 +19,30 @@
             android:orientation="vertical"
             android:padding="5dip">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/logoperro"
-            app:civ_border_color="#EEEEEE"
-            app:civ_border_width="4dp"
-            app:civ_shadow="true"
-            app:civ_shadow_radius="10"
-            app:civ_shadow_color="#8BC34A"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/imgPerfil" />
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgPerfil"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logoperro"
+                app:civ_border_color="#8BC34A"
+                app:civ_border_width="2dp" />
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvMascota"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                />
+                android:orientation="vertical"
+                android:padding="5dip">
 
-        </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvMascota"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

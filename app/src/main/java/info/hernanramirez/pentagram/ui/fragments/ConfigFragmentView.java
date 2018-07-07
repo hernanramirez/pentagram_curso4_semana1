@@ -3,47 +3,40 @@ package info.hernanramirez.pentagram.ui.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 
-
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 import info.hernanramirez.pentagram.R;
-import info.hernanramirez.pentagram.adapters.MascotaAdaptador;
-import info.hernanramirez.pentagram.api.models.SelfUser.Mascota;
+import info.hernanramirez.pentagram.adapters.MascotaTagAdaptador;
+import info.hernanramirez.pentagram.api.models.SearchUser.SearchUser;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PrincipalFragmentView.OnFragmentInteractionListener} interface
+ * {@link ConfigFragmentView.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PrincipalFragmentView#newInstance} factory method to
+ * Use the {@link ConfigFragmentView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PrincipalFragmentView extends Fragment implements IPrincipalFragment.View{
+public class ConfigFragmentView extends Fragment implements IConfigurarFragment.view {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private Mascota mascota;
-    private PrincipalFragmentPresenter presenter;
+    private ConfigFragmentPresenter presenter;
+    private RecyclerView rvTagMascota;
     private ProgressBar progressBar;
-    private CoordinatorLayout coordinatorLayout;
-    private RecyclerView rvMascota;
-    private Snackbar snackbar;
-    CircleImageView circleImageView;
+    private Spinner spinner;
 
+    private Button button;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -51,7 +44,7 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
 
     private OnFragmentInteractionListener mListener;
 
-    public PrincipalFragmentView() {
+    public ConfigFragmentView() {
         // Required empty public constructor
     }
 
@@ -61,11 +54,11 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PrincipalFragmentView.
+     * @return A new instance of fragment ConfigFragmentView.
      */
     // TODO: Rename and change types and number of parameters
-    public static PrincipalFragmentView newInstance(String param1, String param2) {
-        PrincipalFragmentView fragment = new PrincipalFragmentView();
+    public static ConfigFragmentView newInstance(String param1, String param2) {
+        ConfigFragmentView fragment = new ConfigFragmentView();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,24 +73,28 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_principal, container, false);
 
-        coordinatorLayout = (CoordinatorLayout) v.findViewById(R.id.coordinatorLayoutPrincipal);
-        rvMascota = (RecyclerView) v.findViewById(R.id.rvMascota);
-        progressBar = (ProgressBar) v.findViewById(R.id.progress);
+        View v = inflater.inflate(R.layout.fragment_config, container, false);
 
-        circleImageView = (CircleImageView) v.findViewById(R.id.imgPerfil);
+        button = (Button) v.findViewById(R.id.bntConfig);
+        rvTagMascota = (RecyclerView) v.findViewById(R.id.rvTagMascota);
+        progressBar = (ProgressBar) v.findViewById(R.id.progressConfig);
+        spinner = (Spinner) v.findViewById(R.id.spinnerTag);
 
-        presenter = new PrincipalFragmentPresenter(this);
-        obtenerDatosRecientes(v);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buscarTagUsuario(spinner.getSelectedItem().toString());
+            }
+        });
 
+        presenter = new ConfigFragmentPresenter(this);
 
         return v;
     }
@@ -126,11 +123,6 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
         mListener = null;
     }
 
-    public void obtenerDatosRecientes(View view){
-        presenter.obtenerMediosRecientes();
-    }
-
-
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
@@ -142,41 +134,37 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
     }
 
     @Override
-    public void mostarDatosRecientes() {
-
-        System.out.println("Mostar datos recientes vista");
-
-        Snackbar.make(getActivity().findViewById(R.id.coordinatorLayoutPrincipal),
-                "Datos cargados", Snackbar.LENGTH_LONG).show();
-
+    public void buscarTagUsuario(String tag) {
+        presenter.buscarTagUsuario(tag);
     }
 
     @Override
-    public void mostrarFotoPerfil(String perfilFoto) {
-        Picasso.get().load(Uri.parse(perfilFoto)).placeholder(R.drawable.logoperro).into(circleImageView);
-    }
-
-    @Override
-    public void mostarErrorDatosRecientes() {
+    public void mostrarTagUsuario() {
 
     }
+
 
     @Override
     public void generarGridLayout() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        rvMascota.setLayoutManager(gridLayoutManager);
+        rvTagMascota.setLayoutManager(gridLayoutManager);
     }
 
     @Override
-    public MascotaAdaptador crearAdaptador(Mascota mascota) {
-        MascotaAdaptador adaptador = new MascotaAdaptador(mascota, getActivity());
+    public MascotaTagAdaptador crearAdaptador(SearchUser searchUsers) {
+        MascotaTagAdaptador adaptador = new MascotaTagAdaptador(searchUsers, getActivity());
         return adaptador;
     }
 
+    @Override
+    public void inicializarAdaptadorRV(MascotaTagAdaptador adaptador) {
+        rvTagMascota.setAdapter(adaptador);
+    }
+
 
     @Override
-    public void inicializarAdaptadorRV(MascotaAdaptador adaptador) {
-        rvMascota.setAdapter(adaptador);
+    public void mensajeUsuarioNoEncontrado() {
+
     }
 
     /**
@@ -193,5 +181,4 @@ public class PrincipalFragmentView extends Fragment implements IPrincipalFragmen
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }

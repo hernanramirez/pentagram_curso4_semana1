@@ -12,10 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import info.hernanramirez.pentagram.R;
+import info.hernanramirez.pentagram.ui.fragments.ConfigFragmentView;
 import info.hernanramirez.pentagram.ui.fragments.PrincipalFragmentView;
 
 
-public class MainActivity extends AppCompatActivity implements PrincipalFragmentView.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements PrincipalFragmentView.OnFragmentInteractionListener, ConfigFragmentView.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +60,12 @@ public class MainActivity extends AppCompatActivity implements PrincipalFragment
                 View messageView = getLayoutInflater().inflate(R.layout.dialogo_acerca, null, false);
 
                 AlertDialog.Builder dialogo_acerca = new AlertDialog.Builder(MainActivity.this);
-                //dialogo_acerca.setIcon(R.drawable.footprint_black);
+                dialogo_acerca.setIcon(R.drawable.dog_paw);
                 dialogo_acerca.setTitle(R.string.app_name);
                 dialogo_acerca.setView(messageView);
                 dialogo_acerca.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                         dialog.dismiss();
-
                     }
                 });
                 dialogo_acerca.create();
@@ -75,13 +74,13 @@ public class MainActivity extends AppCompatActivity implements PrincipalFragment
 
                 break;
 
-
-            /*
-            case R.id.mFavoritos:
-                Intent i = new Intent(this, MascotasFavoritas.class);
-                startActivity(i);
+            case R.id.action_configurar_cuenta:
+                ConfigFragmentView configFragmentView = new ConfigFragmentView();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame,configFragmentView)
+                        .addToBackStack(null)
+                        .commit();
                 break;
-            */
 
         }
         return super.onOptionsItemSelected(item);
