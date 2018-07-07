@@ -32,7 +32,7 @@ Se utiliza el MVC un poco mas simplificado de manera que el ejercicio sea mas le
 ## Captura de pantallas
 
 ![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PantallaInicial.png)
-![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PatallaInicialMenu)
-![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PantallaConfig)
-![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PantallaSearchTag)
+![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PatallaInicialMenu.png)
+![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PantallaConfig.png)
+![Listado Inicial](https://raw.githubusercontent.com/hernanramirez/pentagram_curso4_semana1/master/docs/img/PantallaSearchTag.png)
 
